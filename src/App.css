@@ -1,19 +1,20 @@
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .BabyName {
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 2px;
-    }
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3.3px;
+  display: inline-flex;
+}
 
 .m {
-    background: rgb(127, 208, 255);
+  background: rgb(127, 208, 255);
 }
 
 .f {
-    background: darkmagenta;
-    color: white;
+  background: darkmagenta;
+  color: white;
 }

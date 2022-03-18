@@ -12,7 +12,7 @@
     "scripts": {
       "format": "prettier --write src",
       "format:check": "prettier --check src",
-      "lint": "eslint src",
+      "lint": "cd src eslint .",
       "type-check": "tsc --noEmit",
       "test": "react-scripts test --watchAll=false",
       "test:watch": "react-scripts test",
