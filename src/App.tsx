@@ -17,14 +17,26 @@ export default function App(): JSX.Element {
     );
   }
 
-  function sortBabyNames() {}
+  function sortBabyNames(babyNameA: string, babyNameB: string) {
+    if (babyNameA < babyNameB) {
+      return -1;
+    } else if (babyNameA > babyNameB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 
   return (
     <>
       <div className="App">
         <h1>Baby Names</h1>
         <h3>Here's a list of Baby Names to choose from:</h3>
-        <div>{babyNamesData.map(takeOneBabyName)}</div>
+        <div>
+          {babyNamesData
+            .sort((a, b) => sortBabyNames(a.name, b.name))
+            .map(takeOneBabyName)}
+        </div>
       </div>
     </>
   );
