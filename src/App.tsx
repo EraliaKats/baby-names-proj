@@ -1,5 +1,6 @@
 import babyNamesData from "./data/babyNamesData.json";
 import "./App.css";
+import { useState } from "react";
 
 interface BabyNameInfo {
   id: number;
@@ -8,6 +9,12 @@ interface BabyNameInfo {
 }
 
 export default function App(): JSX.Element {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function handleSearchBar(newSearchTerm: string) {
+    setSearchTerm(newSearchTerm);
+  }
+
   function takeOneBabyName(babyName: BabyNameInfo) {
     return (
       <div className={"BabyName " + babyName.sex} key={babyName.id}>
@@ -16,6 +23,10 @@ export default function App(): JSX.Element {
       </div>
     );
   }
+
+  const sortedBabyNames = babyNamesData.sort((a, b) =>
+    sortBabyNames(a.name, b.name)
+  );
 
   function sortBabyNames(babyNameA: string, babyNameB: string) {
     if (babyNameA < babyNameB) {
@@ -27,17 +38,26 @@ export default function App(): JSX.Element {
     }
   }
 
+  function isInSearchBar(babyNameObj: BabyNameInfo) {
+    const babyName = babyNameObj.name;
+    return babyName.toLowerCase().includes(searchTerm.toLowerCase())
+      ? true
+      : false;
+  }
+
   return (
     <>
-      <div className="App">
+      <section className="App">
         <h1>Baby Names</h1>
+        <input
+          placeholder="Search for a baby name..."
+          value={searchTerm}
+          onChange={(e) => handleSearchBar(e.target.value)}
+        />
+        <p> You're searching for: {searchTerm}</p>
         <h3>Here's a list of Baby Names to choose from:</h3>
-        <div>
-          {babyNamesData
-            .sort((a, b) => sortBabyNames(a.name, b.name))
-            .map(takeOneBabyName)}
-        </div>
-      </div>
+        <div>{sortedBabyNames.filter(isInSearchBar).map(takeOneBabyName)}</div>
+      </section>
     </>
   );
 }
