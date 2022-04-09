@@ -1,5 +1,6 @@
 import babyNamesData from "./data/babyNamesData.json";
 import "./App.css";
+import sortBabyNames from "./Utils/sortBabyNames";
 import { useState } from "react";
 
 interface BabyNameInfo {
@@ -27,16 +28,6 @@ export default function App(): JSX.Element {
   const sortedBabyNames = babyNamesData.sort((a, b) =>
     sortBabyNames(a.name, b.name)
   );
-
-  function sortBabyNames(babyNameA: string, babyNameB: string) {
-    if (babyNameA < babyNameB) {
-      return -1;
-    } else if (babyNameA > babyNameB) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
 
   function isInSearchBar(babyNameObj: BabyNameInfo) {
     const babyName = babyNameObj.name;
