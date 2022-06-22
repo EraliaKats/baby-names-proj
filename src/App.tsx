@@ -19,8 +19,7 @@ export default function App(): JSX.Element {
   function takeOneBabyName(babyName: BabyNameInfo) {
     return (
       <div className={"BabyName " + babyName.sex} key={babyName.id}>
-        {" "}
-        {babyName.name}{" "}
+        ` ${babyName.name} `
       </div>
     );
   }
